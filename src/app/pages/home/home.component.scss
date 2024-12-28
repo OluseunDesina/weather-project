@@ -1,0 +1,43 @@
+.home {
+  overflow: scroll;
+  // background-image: linear-gradient(to right, #f3b07c, #fcd283);
+}
+
+.weather-type {
+  @apply text-[#484569] text-4xl text-center;
+}
+
+.temp {
+  @apply text-9xl text-center;
+  background-image: linear-gradient(to right, #2f2e57, #605d80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.weather-date {
+  @apply text-center text-4xl text-[#484569];
+}
+
+.weather-data {
+  @apply w-full flex justify-center gap-x-8;
+}
+
+.weather-property {
+  @apply flex flex-col items-center justify-center gap-8 p-4 px-16 text-center;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.data-name {
+  @apply text-[#605d80] text-[1.6rem];
+}
+
+.data {
+  @apply text-4xl text-[#2f2e57];
+}
+
+.not-found {
+  @apply text-center text-5xl text-[#484569] mt-[5rem];
+  text-shadow: -0.3rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}

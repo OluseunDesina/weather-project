@@ -1,0 +1,47 @@
+@if (isLoading()) {
+<div class="flex h-[100vh] items-center justify-center">
+  <img src="assets/loading.gif" alt="">
+</div>
+} @else {
+<div class="home p-4 flex flex-col h-[100vh] items-center justify-center gap-8">
+  @if (data()) {
+  <div class="weather-box">
+    @for (forecast of data().list; track forecast.dt) {
+    <div [style]="backgroundImages[forecast.weather[0]?.main]" class="weather-card">
+      <p class="text-center text-4xl flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 12 7 12s7-6.75 7-12c0-3.866-3.134-7-7-7zm0 9a2 2 0 100-4 2 2 0 000 4z"
+            clip-rule="evenodd" />
+        </svg>
+        {{data()?.city?.name}}
+      </p>
+      <div class="weather">
+        <app-weather-image [weatherImage]="forecast?.weather[0]?.main"></app-weather-image>
+        <p class="weather-type">
+          {{forecast?.weather[0]?.main}}
+        </p>
+        <p class="temp">
+          {{forecast?.main?.temp}}°
+        </p>
+      </div>
+      <div class="weather-date">
+        <p>
+          {{(forecast?.dt + '000') | date: 'mediumDate'}}
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+
+  <a [routerLink]="['/']" routerLinkActive="router-link-active"
+    class="text-center text-primary underline cursor-pointer">Back to Weather report</a>
+  }
+  @if (notFound()) {
+  <p class="not-found">
+    No data found for {{city()}} ☹️
+  </p>
+  }
+
+</div>
+}

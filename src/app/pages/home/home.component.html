@@ -1,0 +1,94 @@
+@if (isLoading()) {
+<div class="flex h-[100vh] items-center justify-center">
+  <img src="assets/loading.gif" alt="">
+</div>
+} @else {
+<div [style]="data() ? backgroundImages[data()?.weather[0]?.main]: ''"
+  class="home p-4 flex flex-col  h-[100vh] items-stretch gap-8"
+  [ngClass]="{'justify-center': !data(), 'justify-stretch': data()}">
+  <!-- Input Field -->
+  <div class="mx-auto w-full lg:w-1/3 border-b border-primary pb-2 flex">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+      <path fill-rule="evenodd"
+        d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 12 7 12s7-6.75 7-12c0-3.866-3.134-7-7-7zm0 9a2 2 0 100-4 2 2 0 000 4z"
+        clip-rule="evenodd" />
+    </svg>
+
+    <input (keydown)="onKeyDown($event)" [formControl]="city" type="text" placeholder="Enter city name"
+      class="text-primary bg-transparent flex-grow focus:outline-none transition-all duration-0" />
+    <!-- Button -->
+    <button (click)="onSearch()" class="bg-primary text-white px-4 py-2 rounded  transition-all duration-300">
+      Get weather report
+    </button>
+  </div>
+  @if ((city.dirty || city.touched) && city.invalid) {
+  <p class="text-center">oooops kindly enter a city</p>
+  }
+  @if (data()) {
+  <div class="waether">
+    <app-weather-image [weatherImage]="data()?.weather[0]?.main"></app-weather-image>
+    <!-- <img class="mx-auto h-72 mb-[-4rem]" [src]="weatherImages[]" alt=""> -->
+    <p class="weather-type">
+      {{data()?.weather[0]?.main}}
+    </p>
+    <p class="temp">
+      {{data()?.main?.temp}}°
+    </p>
+  </div>
+  <div class="weather-date">
+    <p>
+      {{(data()?.dt + '000') | date: 'mediumDate'}}
+    </p>
+  </div>
+  <div class="weather-data">
+    <div class="weather-property">
+      <p class="data-name">
+        Humidity
+      </p>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <!-- Water droplet shape -->
+        <path d="M50 10 C60 25, 70 50, 50 80 C30 50, 40 25, 50 10" fill="#3b9f9f" stroke="black" stroke-width="2" />
+        <!-- Water particles around the droplet -->
+        <circle cx="35" cy="40" r="3" fill="#1e7272" />
+        <circle cx="60" cy="35" r="2.5" fill="#1e7272" />
+        <circle cx="45" cy="50" r="2" fill="#1e7272" />
+        <circle cx="55" cy="60" r="2.5" fill="#1e7272" />
+      </svg>
+
+      <p class="data">{{data()?.main?.humidity}}%</p>
+    </div>
+
+    <div class="weather-property">
+      <p class="data-name">
+        Wind
+      </p>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <!-- Dynamic wind gusts -->
+        <path d="M10,30 Q30,20 50,30 T90,30" fill="transparent" stroke="#1e88e5" stroke-width="4" />
+        <path d="M10,50 Q30,40 50,50 T90,50" fill="transparent" stroke="#1e88e5" stroke-width="4" />
+        <path d="M10,70 Q30,60 50,70 T90,70" fill="transparent" stroke="#1e88e5" stroke-width="4" />
+        <!-- Wind symbol circles -->
+        <circle cx="10" cy="30" r="2" fill="#1e88e5" />
+        <circle cx="10" cy="50" r="2" fill="#1e88e5" />
+        <circle cx="10" cy="70" r="2" fill="#1e88e5" />
+      </svg>
+
+      <p class="data">{{data()?.wind?.speed}} km/h</p>
+    </div>
+  </div>
+
+  <a [routerLink]="['/forecast']" [queryParams]="{city: city.value}" routerLinkActive="router-link-active"
+    class="text-2xl mb-3 cursor-pointer text-center text-primary underline">
+    view our 5 day forecast
+  </a>
+  }
+  @if (notFound()) {
+  <p class="not-found">
+    No data found for {{city.value}} ☹️
+  </p>
+  }
+
+</div>
+}

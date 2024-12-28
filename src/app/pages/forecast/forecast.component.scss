@@ -1,0 +1,33 @@
+.home {
+  overflow: scroll;
+}
+
+.weather-box {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8;
+}
+
+.weather-card {
+  @apply p-4 py-8;
+  border-radius: 1rem;
+}
+
+.weather-type {
+  @apply text-[#484569] text-2xl text-center;
+}
+
+.temp {
+  @apply text-4xl text-center;
+  background-image: linear-gradient(to right, #2f2e57, #605d80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.weather-date {
+  @apply text-center text-2xl text-[#484569];
+}
+
+.not-found {
+  @apply text-center text-3xl text-[#484569] mt-[5rem];
+  text-shadow: -0.3rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
