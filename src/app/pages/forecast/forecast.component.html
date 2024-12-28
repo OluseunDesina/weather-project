@@ -5,6 +5,9 @@
 } @else {
 <div class="home p-4 flex flex-col h-[100vh] items-center justify-center gap-8">
   @if (data()) {
+  <p class="mb-5 text-primary text-center text-2xl md:text-3xl lg:text-5xl">
+    Our five days weather forecast
+  </p>
   <div class="weather-box">
     @for (forecast of data().list; track forecast.dt) {
     <div [style]="backgroundImages[forecast.weather[0]?.main]" class="weather-card">
