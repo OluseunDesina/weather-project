@@ -46,13 +46,15 @@ This Angular application provides a platform to:
    ```
 5. Obtain an API key from [OpenWeather](https://openweathermap.org/) and create an environment file:
    ```bash
-   echo "apiKey:your_apiKey_here" > src/environments/environment.ts
+   echo "export const environment = {
+  production: false,
+  apiKey:Your_apiKEy,}" > src/environments/environment.ts
    ```
-6. Start the application:
+1. Start the application:
    ```bash
    ng serve
    ```
-7. Open your browser and navigate to:
+2. Open your browser and navigate to:
    ```
    http://localhost:4200
    ```
