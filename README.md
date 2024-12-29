@@ -46,9 +46,7 @@ This Angular application provides a platform to:
    ```
 5. Obtain an API key from [OpenWeather](https://openweathermap.org/) and create an environment file:
    ```bash
-   echo "export const environment = {
-  production: false,
-  apiKey:Your_apiKEy,}" > src/environments/environment.ts
+   echo "export const environment = {production: false, apiKey:Your_apiKEy,};" > src/environments/environment.ts
    ```
 1. Start the application:
    ```bash
